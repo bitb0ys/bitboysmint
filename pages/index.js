@@ -31,7 +31,7 @@ export default function Home() {
         wallet.connect();
     }
   }, [wallet.autoConnect, wallet.wallet, wallet.connect]);
-  
+
 
   const [decActive, setDecActive] = useState(false);
   const [incActive, setIncActive] = useState(true);
@@ -40,49 +40,49 @@ export default function Home() {
   const incrementMintAmount = async () => {
     const mintfee = document.getElementById("mintfee")
     const mintAmount = document.getElementById("mintAmount")
-    
+
     if (mintInfo.numToMint === 1) {
       setDecActive(current => !current);
-      mintInfo.numToMint++; 
+      mintInfo.numToMint++;
       mintfee.textContent = `${(candyMachineData.data.mintFee * mintInfo.numToMint).toFixed(2)} $APT`
       mintAmount.textContent = mintInfo.numToMint
-    } 
-    
+    }
+
     else if (mintInfo.numToMint === MaxMint-1) {
       setIncActive(current => !current);
-      mintInfo.numToMint++; 
+      mintInfo.numToMint++;
       mintfee.textContent = `${(candyMachineData.data.mintFee * mintInfo.numToMint).toFixed(2)} $APT`
       mintAmount.textContent = mintInfo.numToMint
-    } 
-    
+    }
+
     else if (mintInfo.numToMint < MaxMint) {
-      mintInfo.numToMint++; 
+      mintInfo.numToMint++;
       mintfee.textContent = `${(candyMachineData.data.mintFee * mintInfo.numToMint).toFixed(2)} $APT`
       mintAmount.textContent = mintInfo.numToMint
     }
   }
 
   const decrementMintAmount = async () => {
-    
+
     const mintfee = document.getElementById("mintfee")
     const mintAmount = document.getElementById("mintAmount")
-    
+
     if (mintInfo.numToMint === 2) {
       setDecActive(current => !current);
-      mintInfo.numToMint--; 
+      mintInfo.numToMint--;
       mintfee.textContent = `${(candyMachineData.data.mintFee * mintInfo.numToMint).toFixed(2)} $APT`
       mintAmount.textContent = mintInfo.numToMint
-    } 
-    
+    }
+
     else if (mintInfo.numToMint === MaxMint) {
       setIncActive(current => !current);
-      mintInfo.numToMint--; 
+      mintInfo.numToMint--;
       mintfee.textContent = `${(candyMachineData.data.mintFee * mintInfo.numToMint).toFixed(2)} $APT`
       mintAmount.textContent = mintInfo.numToMint
-    } 
-    
+    }
+
     else if (mintInfo.numToMint > 1) {
-      mintInfo.numToMint--; 
+      mintInfo.numToMint--;
       mintfee.textContent = `${(candyMachineData.data.mintFee * mintInfo.numToMint).toFixed(2)} $APT`
       mintAmount.textContent = mintInfo.numToMint
 
@@ -154,7 +154,7 @@ export default function Home() {
         toast.success("Minting success!")
     }
 
-    
+
     setMintInfo({...mintInfo, minting: false, success: mintSuccess, mintedNfts})
 }
 
@@ -215,8 +215,8 @@ export default function Home() {
     <div className="bg-gray-500">
       <div className={styles.container}>
         <Head>
-          <title>Nevermores Mint</title>
-          <meta name="description" content="Nevermores Mint" />
+          <title>BitBoys on Aptos Mint</title>
+          <meta name="description" content="Bitboys on Aptos" />
           <link rel="icon" href="/favicon.ico" />
           <link rel="preconnect" href="https://fonts.googleapis.com" />
           <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin />
@@ -239,44 +239,35 @@ export default function Home() {
           </div>
           <img src={collectionCoverUrl} className={styles.mintimage} />
           <div id="collection-info" className="d-flex flex-column align-items-center text-white" style={{width: "80%"}}>
-            {isFetchignCmData ? <Spinner animation="border" role="status" className="mt-5"><span className="visually-hidden">Loading...</span></Spinner> : 
+            {isFetchignCmData ? <Spinner animation="border" role="status" className="mt-5"><span className="visually-hidden">Loading...</span></Spinner> :
             <>
               <div className="d-flex align-items-center my-3">
-                <div className={styles.inputbtnsbox}>
-                <button onClick={incrementMintAmount} className={styles.inputbtns} style={{border: incActive ? '' : '1px solid grey'}}>▲</button>
-                <button onClick={decrementMintAmount} className={styles.inputbtns} style={{border: decActive ? '' : '1px solid grey' }}>▼</button>
-                </div>
-                <div id="mint-amount-input" className={`${styles.defaultInput} me-3`}>
-                  <p style={{marginTop: "15px"}} id="mintAmount">{mintInfo.numToMint}</p>
-                </div>
+
                 <button className={styles.button} onClick={mint} disabled={!canMint}>{mintInfo.minting ? <Spinner animation="border" role="status"><span className="visually-hidden">Loading...</span></Spinner> : "Mint"}</button>
               </div>
             </>}
             <div className={styles.mintstats}>
               <div className={styles.spacebetween}>
-                <h6>Minted NFTs:</h6>
+                <h6><b>Minted NFTs:</b></h6>
                 <h6>{candyMachineData.data.numMintedTokens} / {COLLECTION_SIZE}</h6>
               </div>
               <div className={styles.spacebetween}>
-                <h6>Mint fee: </h6>
-                <h6 id="mintfee">{candyMachineData.data.mintFee * mintInfo.numToMint} $APT</h6>
+                <h6><b>Mint fee: </b></h6>
+                <h6 id="mintfee"> FREE </h6>
               </div>
               <div className={styles.spacebetween}>
-                <h6>Max mints per wallet: </h6>
-                <h6>{MaxMint}</h6>
+                <h6><b>Max mints per wallet:</b></h6>
+                <h6> 1 </h6>
               </div>
               <div className={styles.spacebetween}>
-                <h6>Presale Mint:</h6>
+                <h6><b>Whitelist Mint</b></h6>
                 <h6>{timeLeftToMint.presale === "LIVE" ? "LIVE" : timeLeftToMint.presale.days + " d : " + timeLeftToMint.presale.hours + " h : " + timeLeftToMint.presale.minutes + " m : " + timeLeftToMint.presale.seconds + " s"}</h6>
               </div>
-              <div className={styles.spacebetween}>
-                <h6>Public Mint: </h6>
-                <h6>{timeLeftToMint.public === "LIVE" ? "LIVE" : timeLeftToMint.public.days + " d : " + timeLeftToMint.public.hours + " h : " + timeLeftToMint.public.minutes + " m : " + timeLeftToMint.public.seconds + " s"}</h6>
-              </div>
+
             </div>
           <div className={styles.notification} style={{opacity: notificationActive ? '1' : ''}}>
             <h6 className={styles.notificationtext}>Please connect your wallet at the top right of the page</h6>
-          </div>  
+          </div>
           </div>
 
           <Modal id="mint-results-modal" show={mintInfo.success} onHide={() => setMintInfo({...mintInfo, success: false, mintedNfts: []})} centered size="lg">
