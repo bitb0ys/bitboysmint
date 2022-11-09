@@ -241,10 +241,7 @@ export default function Home() {
           <div id="collection-info" className="d-flex flex-column align-items-center text-white" style={{width: "80%"}}>
             {isFetchignCmData ? <Spinner animation="border" role="status" className="mt-5"><span className="visually-hidden">Loading...</span></Spinner> :
             <>
-              <div className="d-flex align-items-center my-3">
-
-                <button className={styles.button} onClick={mint} disabled={!canMint}>{mintInfo.minting ? <Spinner animation="border" role="status"><span className="visually-hidden">Loading...</span></Spinner> : "Mint"}</button>
-              </div>
+              
             </>}
             <div className={styles.mintstats}>
               <div className={styles.spacebetween}>
@@ -261,7 +258,7 @@ export default function Home() {
               </div>
               <div className={styles.spacebetween}>
                 <h6><b>Whitelist Mint</b></h6>
-                <h6>{timeLeftToMint.presale === "LIVE" ? "LIVE" : timeLeftToMint.presale.days + " d : " + timeLeftToMint.presale.hours + " h : " + timeLeftToMint.presale.minutes + " m : " + timeLeftToMint.presale.seconds + " s"}</h6>
+                <h6> CLOSED </h6>
               </div>
 
             </div>
